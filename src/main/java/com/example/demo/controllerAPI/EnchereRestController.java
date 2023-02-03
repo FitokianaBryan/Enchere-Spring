@@ -31,7 +31,7 @@ public class EnchereRestController {
     Connection con;
     {
         try {
-            con = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn");
+            con = ManipDb.pgConnect("postgres","railway","xdUc1BXEMu9U6UjW8VmL");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -186,15 +186,16 @@ public class EnchereRestController {
                                         @RequestParam(required = false, value="datefin") String endDate,
                                         @RequestParam(required = false, value="description") String category,
                                         @RequestParam(required = false, value="status") String auctionStatus,
-                                        @RequestParam(required = false, value="motcle") String keywords){
-        con1.Resolve();
-        PreparedStatement stmt = ed.generateStatement(con1,startDate,endDate,category,auctionStatus,keywords);
+                                        @RequestParam(required = false, value="motcle") String keywords,
+                                        @RequestParam(required = false, value="typecategorie") String typecategorie) throws Exception {
+
+        PreparedStatement stmt = ed.generateStatement(con1,startDate,endDate,category,auctionStatus,keywords,typecategorie);
         List<Enchere> encheres= null;
         try {
             encheres = ed.getListEnchereRecherche(stmt);
         } catch (Exception e) {
         }
-        con1.CloseRC();
+        con1.getConnection().close();
         return encheres;
     }
 }

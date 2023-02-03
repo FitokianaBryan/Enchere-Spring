@@ -70,23 +70,23 @@ public class EnchereDao {
             con = new Connexion(requete, "hh");
             ResultSet res = con.getResultset();
             while (con.getResultset().next()) {
-               int idenchere = con.getResultset().getInt(1);
-               int idutilisateur = con.getResultset().getInt(2);
-               String description = con.getResultset().getString(3);
-               float prixMinimumvente = con.getResultset().getFloat(4);
-               int durreenchere = con.getResultset().getInt(5);
-               Timestamp DateheureEnchere = con.getResultset().getTimestamp(6);
-               int status = con.getResultset().getInt(7);
-               String nomproduit = con.getResultset().getString(8);
-               String descProduit = con.getResultset().getString(9);
-               String typecategorie = con.getResultset().getString(10);
-                liste.add(new Object[] {idenchere,idutilisateur,description,prixMinimumvente,durreenchere,DateheureEnchere,status,nomproduit,descProduit,typecategorie});
+                int idenchere = con.getResultset().getInt(1);
+                int idutilisateur = con.getResultset().getInt(2);
+                String description = con.getResultset().getString(3);
+                float prixMinimumvente = con.getResultset().getFloat(4);
+                int durreenchere = con.getResultset().getInt(5);
+                Timestamp DateheureEnchere = con.getResultset().getTimestamp(6);
+                int status = con.getResultset().getInt(7);
+                String nomproduit = con.getResultset().getString(8);
+                String descProduit = con.getResultset().getString(9);
+                String typecategorie = con.getResultset().getString(10);
+                String photo = con.getResultset().getString(11);
+                liste.add(new Object[] {idenchere,idutilisateur,description,prixMinimumvente,durreenchere,DateheureEnchere,status,nomproduit,descProduit,typecategorie,photo});
             }
             return liste;
         } catch (Exception e) {
             return null;
         }
-//        finally { con.Close(); }
     }
 
  public List<Enchere> getFicheEnchere(Connection con,int idenchere) throws Exception {
@@ -213,41 +213,44 @@ public class EnchereDao {
 
 
     public PreparedStatement generateStatement(Connexion conn, String startDate,String endDate,
-                                               String category,String auctionStatus, String keywords) {
+                                               String category,String auctionStatus, String keywords,String typecategorie) {
         PreparedStatement stmt =null;
         try {
 
-            String query = "SELECT e.*, p.nomproduit FROM enchere e join produit_enchere pe using (idenchere) " +
-                    "join produit p using (idproduit) WHERE 1=1";
+            String query = " select*from enchere e inner join produit_enchere pe using(idenchere) inner join produit p using(idproduit) inner join categorieproduit cp using(idcategorieproduit) WHERE 1=1";
             StringBuilder sb = new StringBuilder(query);
 
 
             int parameterIndex = 1;
 
             // check if the user entered a start date
-            if (startDate != null) {
+            if (!startDate.equals("")) {
                 sb.append(" AND dateheureenchere >= '"+java.sql.Date.valueOf(startDate)+"'");
 
             }
 
             // check if the user entered an end date
-            if (endDate != null) {
-                sb.append(" AND dateheureenchere <= '"+java.sql.Date.valueOf(startDate)+"'");
+            if (!endDate.equals("")) {
+                sb.append(" AND dateheureenchere <= '"+java.sql.Date.valueOf(endDate)+"'");
+            }
+
+            if(!typecategorie.equals("")){
+                sb.append(" AND typecategorie LIKE '%"+typecategorie+"%'");
             }
 
             // check if the user entered a category
-            if (category != null) {
+            if (!category.equals("")) {
                 sb.append(" AND e.description  like '%"+category+"%'");
             }
 
             // check if the user entered an auction status
-            if (auctionStatus != null) {
+            if (!auctionStatus.equals("")) {
 
                 sb.append(" AND status = '"+auctionStatus+"'");
             }
             // check if the user entered a name or description
-            if (keywords != null) {
-                sb.append(" AND (nomproduit LIKE '%"+keywords+"%' OR e.description LIKE '%"+keywords+"%')");
+            if (!keywords.equals("")) {
+                sb.append(" AND (nomproduit LIKE '%"+keywords+"%' OR e.description LIKE '%"+keywords+"%' OR typecategorie like '%"+keywords+"%')");
             }
             query=sb.toString();
             stmt = conn.prepareStatement(query);

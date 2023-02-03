@@ -34,7 +34,7 @@ public class HistoriqueRestController {
     {
         TokenUserDao tud = new TokenUserDao();
         TokenUser tu;
-        con.Resolve();
+//        con.Resolve();
          try {
              if(tud.validTokenUser(token)!=0)
              {
@@ -49,7 +49,7 @@ public class HistoriqueRestController {
          {
              return new ResponseEntity<>(HttpStatus.NOT_FOUND);
          }
-         finally { con.CloseRC(); }
+//         finally { con.CloseRC(); }
     }
 
     @GetMapping("HistoriqueVente")
@@ -57,7 +57,7 @@ public class HistoriqueRestController {
     {
         TokenUserDao tud = new TokenUserDao();
         TokenUser tu;
-        con.Resolve();
+//        con.Resolve();
         try {
             if(tud.validTokenUser(token)!=0)
             {
@@ -72,7 +72,7 @@ public class HistoriqueRestController {
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con.CloseRC(); }
+//        finally { con.CloseRC(); }
     }
 
     @GetMapping("ResultatEnchere")
@@ -88,21 +88,21 @@ public class HistoriqueRestController {
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con1.close(); }
+//        finally { con1.close(); }
     }
 
     @GetMapping("ResultatEnchere/{idEnchere}")
     public ResponseEntity<List<Object[]>> ResultatEnchere(@PathVariable("idEnchere") int idEnchere)
     {
         try {
-            con.Resolve();
+//            con.Resolve();
             return new ResponseEntity<List<Object[]>>(new HistoriqueOffreDao().userGagnantView(con,idEnchere), HttpStatus.OK);
         }
         catch(Exception e)
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con.CloseRC(); }
+//        finally { con.CloseRC(); }
     }
 
 }

@@ -51,7 +51,7 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con.close(); con1.Close(); }
+//        finally { con.close(); con1.Close(); }
     }
 
     @GetMapping("listeEnchereTerminer")
@@ -69,7 +69,7 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con1.Close(); con.close();}
+//        finally { con1.Close(); con.close();}
     }
 
 
@@ -81,7 +81,7 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con1.Close(); }
+//        finally { con1.Close(); }
     }
 
 
@@ -102,7 +102,7 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con1.Close(); }
+//        finally { con1.Close(); }
     }
 
     @PostMapping("AjoutEnchere")
@@ -137,7 +137,7 @@ public class EnchereRestController {
             response.setStatus("404");
             response.setMessage("veuillez dabord vous authentifier");
        }
-       con1.CloseRC();
+//       con1.CloseRC();
         return response;
     }
 
@@ -158,7 +158,7 @@ public class EnchereRestController {
             response.setMessage("token expiré");
             response.setStatus("404");
         }
-        con1.CloseRC();
+//        con1.CloseRC();
         return response;
     }
 
@@ -177,7 +177,7 @@ public class EnchereRestController {
             response.setMessage("token expiré");
         }
         response.setMessage("mety");
-        con1.CloseSC();
+//        con1.CloseSC();
         return response;
     }
 
@@ -195,7 +195,7 @@ public class EnchereRestController {
             encheres = ed.getListEnchereRecherche(stmt);
         } catch (Exception e) {
         }
-        con1.getConnection().close();
+//        con1.getConnection().close();
         return encheres;
     }
 }

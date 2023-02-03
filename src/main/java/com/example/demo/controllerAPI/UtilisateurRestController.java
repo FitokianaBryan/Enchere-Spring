@@ -36,7 +36,7 @@ public class UtilisateurRestController {
     public Response traitementInscription(@RequestParam("nom") String nom, @RequestParam("prenom") String prenom, @RequestParam("email") String email, @RequestParam("mdp") String mdp)
     {
         Response response = new Response();
-        con1.Resolve();
+//        con1.Resolve();
         try{
             ud.Inscription(con1,nom,prenom,email,mdp);
             response.setStatus("200");
@@ -47,7 +47,7 @@ public class UtilisateurRestController {
             response.setStatus("400");
             response.setMessage("Inscripiton impossible");
         }
-        con1.CloseSC();
+//        con1.CloseSC();
         return response;
     }
 
@@ -77,7 +77,7 @@ public class UtilisateurRestController {
         Response response = new Response();
         TokenUserDao tud = new TokenUserDao();
         TokenUser tu;
-        con1.Resolve();
+//        con1.Resolve();
         try {
                     if(tud.validTokenUser(token)!=0)
                     {
@@ -93,7 +93,7 @@ public class UtilisateurRestController {
             throw new RuntimeException(e);
         }
         finally {
-            con1.CloseSC();
+//            con1.CloseSC();
             return response;
         }
     }

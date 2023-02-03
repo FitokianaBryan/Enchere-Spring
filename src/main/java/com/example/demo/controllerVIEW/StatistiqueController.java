@@ -18,7 +18,7 @@ public class StatistiqueController {
     @GetMapping("/Statistique")
     public String Statistique(HttpServletRequest request) throws Exception
     {
-        con.Resolve();
+//        con.Resolve();
         //chiffre d'affaire par annee , mois
         List<Object[]> graphe = sd.chiffreAffaireAnneeMois(con);
 
@@ -39,7 +39,7 @@ public class StatistiqueController {
         request.setAttribute("StatEnchere",StatEnchere);
         request.setAttribute("StatGraphe",StatGraphe);
         request.setAttribute("annee",2023);
-        con.getConnection().close();
+//        con.getConnection().close();
         return "Statistique";
     }
 

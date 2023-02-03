@@ -38,7 +38,7 @@ public class HistoriqueOffreRestController {
         Response response = new Response();
        TokenUserDao tud = new TokenUserDao();
        TokenUser t;
-       con.Resolve();
+//       con.Resolve();
         if(tud.validTokenUser(token)!=0)
        {
            t = tud.getTokenUser(token);
@@ -72,7 +72,7 @@ public class HistoriqueOffreRestController {
         else{
             response.setMessage("veuillez dabord vous authentifier");
         }
-        con.CloseSC();
+//        con.CloseSC();
         return response;
     }
 
@@ -80,14 +80,14 @@ public class HistoriqueOffreRestController {
     public ResponseEntity<List<HistoriqueOffre>> listeOffre(@RequestParam("idEnchere") int idEnchere) throws Exception
     {
         try {
-            if(con1 == null) {
-                con1 = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn");;
-            }
+//            if(con1 == null) {
+//                con1 = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn");;
+//            }
             return new ResponseEntity<List<HistoriqueOffre>>(new HistoriqueOffreDao().ListeOffre(con1,idEnchere), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        finally { con1.close(); }
+//        finally { con1.close(); }
     }
 
 

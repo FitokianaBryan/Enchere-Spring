@@ -52,7 +52,7 @@ public class TokenAdminDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.CloseSC(); }
+//        finally { con.CloseSC(); }
     }
 
     public void deleteTokenAdmin(String token,int idAdmin){
@@ -65,7 +65,7 @@ public class TokenAdminDao {
         } catch (Exception e) {
             throw e;
         }
-        finally { con.CloseSC(); }
+//        finally { con.CloseSC(); }
     }
 
     public int validTokenAdmin(String token) throws Exception
@@ -76,7 +76,7 @@ public class TokenAdminDao {
         con.getResultset().next();
         int result = res.getInt(1);
         System.out.println("la requete est" + requete);
-        con.CloseRC();
+//        con.CloseRC();
         return result;
     }
 
@@ -88,7 +88,7 @@ public class TokenAdminDao {
         con.getResultset().next();
         int result = res.getInt(1);
         System.out.println("la requete est" + requete);
-        con.CloseRC();
+//        con.CloseRC();
         return result;
     }
 

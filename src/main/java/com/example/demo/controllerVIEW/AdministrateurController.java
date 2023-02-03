@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 public class AdministrateurController {
 
-    Connexion con;
+    Connexion con = null;
 
     Connection con1 = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn");
 
@@ -53,7 +53,6 @@ public class AdministrateurController {
             String token_admin = tokendao.insertTokenAdmin(admin);
             session.setAttribute("admin", admin);
             session.setAttribute("token",token_admin);
-
             return "redirect:/backOffice";
         }else{
             return "redirect:/?error=1";
@@ -65,6 +64,7 @@ public class AdministrateurController {
 
         HttpSession session = request.getSession();
         if(session.getAttribute("admin")!=null){
+            if(con1 == null) { con1 = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn"); }
             List<CategorieProduit> listeCategorie = cp.getListCategorie(con1);
             request.setAttribute("chiffreAffaire",p.ChiffreAffaire(con));
             request.setAttribute("listeCategorie",listeCategorie);

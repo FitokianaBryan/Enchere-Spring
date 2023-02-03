@@ -13,6 +13,7 @@ import com.example.demo.ObjectBdd.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -37,8 +38,10 @@ public class EnchereRestController {
     }
 
     @GetMapping("listeEnchere")
-    public ResponseEntity<List<Enchere>> getListeEnchere(){
+    public ResponseEntity<List<Enchere>> getListeEnchere() throws SQLException {
         try{
+            con1.Resolve();
+            if(con == null) { con = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn"); }
             List<Enchere> list = ed.getListEnchere(con);
             for(Enchere e : list)
             {
@@ -48,11 +51,14 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        finally { con.close(); con1.Close(); }
     }
 
     @GetMapping("listeEnchereTerminer")
-    public ResponseEntity<List<Enchere>> getListeEnchereTerminer(){
+    public ResponseEntity<List<Enchere>> getListeEnchereTerminer() throws Exception {
         try{
+            con1.Resolve();
+            if(con == null) { con = ManipDb.pgConnect("postgres","railway","9EHRLZ2xGeZ0Vu7ZMuAn"); }
             List<Enchere> list1 = ed.getListEnchere(con);
             for(Enchere e : list1)
             {
@@ -63,16 +69,19 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        finally { con1.Close(); con.close();}
     }
 
 
     @GetMapping("ficheEnchere/{idEnchere}")
     public ResponseEntity<List<Object[]>> getFicheEnchere(@PathVariable int idEnchere){
         try{
+            con1.Resolve();
             return new ResponseEntity<List<Object[]>>(new EnchereDao().FicheEnchere(con1,idEnchere), HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        finally { con1.Close(); }
     }
 
 
@@ -80,6 +89,7 @@ public class EnchereRestController {
     public ResponseEntity<List<Object[]>> ListeEnchereUser(@RequestHeader("token") String token){
         TokenUserDao tud = new TokenUserDao();
         TokenUser tu = new TokenUser();
+        con1.Resolve();
         try{
             if(tud.validTokenUser(token)!=0)
             {
@@ -92,12 +102,14 @@ public class EnchereRestController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        finally { con1.Close(); }
     }
 
     @PostMapping("AjoutEnchere")
     public Response AjoutEnchere(@RequestHeader("token") String token, @RequestParam("description") String description, @RequestParam("prixminimumvente") float prixminimumvente, @RequestParam("durreenchere") int durreenchere) throws Exception {
         Response response = new Response();
         TokenUserDao tud = new TokenUserDao();
+        con1.Resolve();
         TokenUser tu;
         if(tud.validTokenUser(token)!=0)
         {
@@ -125,6 +137,7 @@ public class EnchereRestController {
             response.setStatus("404");
             response.setMessage("veuillez dabord vous authentifier");
        }
+       con1.CloseRC();
         return response;
     }
 
@@ -133,6 +146,7 @@ public class EnchereRestController {
     public Response ProduitEnchere(@PathVariable int idEnchere,@RequestParam("idProduit") int idProduit,@RequestHeader("token") String token) throws Exception {
         Response response = new Response();
         TokenUserDao tud = new TokenUserDao();
+        con1.Resolve();
         if(tud.validTokenUser(token)!=0)
         {
             int result = p.AjouterProduitEnchere(con1,idEnchere,idProduit);
@@ -144,6 +158,7 @@ public class EnchereRestController {
             response.setMessage("token expiré");
             response.setStatus("404");
         }
+        con1.CloseRC();
         return response;
     }
 
@@ -152,6 +167,7 @@ public class EnchereRestController {
     public Response AjoutPhotoEnchere(@PathVariable("idproduit") int idproduit,@RequestParam("photo") String photo,@RequestHeader("token") String token) throws Exception {
         Response response = new Response();
         TokenUserDao tud = new TokenUserDao();
+        con1.Resolve();
         if(tud.validTokenUser(token)!=0)
         {
             p.AjouterPhotoProduit(con1,idproduit,photo);
@@ -161,6 +177,7 @@ public class EnchereRestController {
             response.setMessage("token expiré");
         }
         response.setMessage("mety");
+        con1.CloseSC();
         return response;
     }
 
@@ -170,13 +187,14 @@ public class EnchereRestController {
                                         @RequestParam(required = false, value="description") String category,
                                         @RequestParam(required = false, value="status") String auctionStatus,
                                         @RequestParam(required = false, value="motcle") String keywords){
-
+        con1.Resolve();
         PreparedStatement stmt = ed.generateStatement(con1,startDate,endDate,category,auctionStatus,keywords);
         List<Enchere> encheres= null;
         try {
             encheres = ed.getListEnchereRecherche(stmt);
         } catch (Exception e) {
         }
+        con1.CloseRC();
         return encheres;
     }
 }

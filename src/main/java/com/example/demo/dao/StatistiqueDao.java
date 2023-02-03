@@ -26,7 +26,7 @@ public class StatistiqueDao {
         } catch (Exception e) {
             return null;
         }
-        finally {con.Close();}
+//        finally {con.Close();}
     }
     // nombre total des produits vendus par catégorie
     public List<Object[]> NombreTotalProduitVendu(Connexion con)
@@ -46,7 +46,7 @@ public class StatistiqueDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
     //Stat membres
@@ -67,7 +67,7 @@ public class StatistiqueDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
     //Stat enchere
@@ -88,7 +88,7 @@ public class StatistiqueDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
     //StatClient
@@ -110,7 +110,7 @@ public class StatistiqueDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
     //Stat graphe
@@ -130,7 +130,7 @@ public class StatistiqueDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close();}
+//        finally { con.Close();}
     }
 
 

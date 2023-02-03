@@ -86,7 +86,7 @@ public class EnchereDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
  public List<Enchere> getFicheEnchere(Connection con,int idenchere) throws Exception {
@@ -132,7 +132,7 @@ public class EnchereDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
     public void AjouterEnchere(Connexion con, int idutilisateur, String description, float prixminimumvente, int durreenchere) throws Exception
@@ -140,7 +140,7 @@ public class EnchereDao {
         String requete="INSERT INTO Enchere (idUtilisateur, description, prixMinimumVente,durreEnchere) values ("+idutilisateur+",'"+description+"',"+prixminimumvente+","+durreenchere+")";
         con = new Connexion(requete);
         System.out.println(requete);
-        con.CloseSC();
+//        con.CloseSC();
     }
 
     public float getPourcentage() throws SQLException {
@@ -148,7 +148,7 @@ public class EnchereDao {
         Connexion con = new Connexion(requete,"hh");
         con.getResultset().next();
         float pourcentage = con.getResultset().getFloat(1);
-        con.CloseRC();
+//        con.CloseRC();
         return pourcentage;
     }
 
@@ -157,7 +157,7 @@ public class EnchereDao {
         Connexion con = new Connexion(requete,"hh");
         con.getResultset().next();
         float prixVente = con.getResultset().getFloat(1);
-        con.CloseRC();
+//        con.CloseRC();
         return prixVente;
     }
 
@@ -174,7 +174,7 @@ public class EnchereDao {
         con = new Connexion(requete,"");
         con.getResultset().next();
         int result = con.getResultset().getInt(1);
-        con.CloseRC();
+//        con.CloseRC();
         return result;
     }
 
@@ -186,14 +186,14 @@ public class EnchereDao {
         int dureenchere = con.getResultset().getInt(2);
         int idutilisateur = con.getResultset().getInt(3);
         Enchere e = new Enchere(prixminimumvente,dureenchere,idutilisateur);
-        con.CloseRC();
+//        con.CloseRC();
         return e;
     }
 
     public void setStatutEnchere(Connexion con,int idenchere) throws SQLException {
         String requete ="update enchere set status=1 where idenchere="+idenchere+"";
         con = new Connexion(requete);
-        con.CloseSC();
+//        con.CloseSC();
     }
 
     public void EnchereTerminer(Connexion con,int idenchere) throws SQLException {
@@ -208,7 +208,7 @@ public class EnchereDao {
            setStatutEnchere(con,idenchere);
            System.out.println("tafiditra V"+idenchere);
         }
-        con.CloseRC();
+//        con.CloseRC();
     }
 
 

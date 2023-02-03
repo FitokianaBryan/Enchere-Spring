@@ -16,8 +16,9 @@ public class StatistiqueController {
     Connexion con = new Connexion();
     StatistiqueDao sd = new StatistiqueDao();
     @GetMapping("/Statistique")
-    public String Statistique(HttpServletRequest request)
+    public String Statistique(HttpServletRequest request) throws Exception
     {
+        con.Resolve();
         //chiffre d'affaire par annee , mois
         List<Object[]> graphe = sd.chiffreAffaireAnneeMois(con);
 
@@ -38,14 +39,17 @@ public class StatistiqueController {
         request.setAttribute("StatEnchere",StatEnchere);
         request.setAttribute("StatGraphe",StatGraphe);
         request.setAttribute("annee",2023);
+        con.getConnection().close();
         return "Statistique";
     }
 
     @GetMapping("/graphe")
-    public String RechercheStatistique(HttpServletRequest request)
+    public String RechercheStatistique(HttpServletRequest request) throws Exception
     {
+        con.Resolve();
         List<Object[]> graphe = sd.chiffreAffaireAnneeMois(con);
         request.setAttribute("graphe",graphe);
+        con.getConnection().close();
         return "Statistique";
     }
 }

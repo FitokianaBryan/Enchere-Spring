@@ -43,7 +43,7 @@ public class HistoriqueOffreDao {
                 System.out.println("Transaction échouée : annulation");
             } catch (Exception exc) {}
         }
-        finally {con.CloseSC();}
+//        finally {con.CloseSC();}
     }
 
     public void setCompteUser(int iduser,float montant,Connexion con) throws  Exception
@@ -59,7 +59,7 @@ public class HistoriqueOffreDao {
                 System.out.println("Transaction échouée : annulation");
             } catch (SQLException ex) {}
         }
-        finally {con.CloseSC();}
+//        finally {con.CloseSC();}
     }
 
 
@@ -117,7 +117,7 @@ public class HistoriqueOffreDao {
         } catch (Exception e) {
             return null;
         }
-        finally {con.Close();}
+//        finally {con.Close();}
     }
 
 

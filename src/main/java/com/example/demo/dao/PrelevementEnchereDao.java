@@ -15,7 +15,7 @@ public class PrelevementEnchereDao {
         String requete="INSERT INTO prelevementenchere(idenchere,montant) values ("+idenchere+","+montant+")";
         con = new Connexion(requete);
         System.out.println(requete);
-        con.CloseSC();
+//        con.CloseSC();
     }
 
     public void setPourcentage(Connexion con,float pourcentage) throws Exception

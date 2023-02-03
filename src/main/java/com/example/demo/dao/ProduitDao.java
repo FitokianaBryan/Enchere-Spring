@@ -34,14 +34,14 @@ public class ProduitDao {
     {
        String requete ="insert into Produit(nomproduit,description,prix,numero_serie,datesortie,etat,provenance,idcategorieproduit) values ('"+nomproduit+"','"+description+"',"+prix+",'"+numero_serie+"','"+datesortie+"','"+etat+"','"+provenance+"',"+categorieproduit+")";
        con = new Connexion(requete);
-       con.CloseSC();
+//       con.CloseSC();
     }
     public void AjouterPhotoProduit(Connexion con,int idproduit,String photo)
     {
         String requete = "insert into Photo_produit(idproduit,photo) values ("+idproduit+",'"+photo+"')";
         con = new Connexion(requete);
         System.out.println(requete);
-        con.CloseSC();
+//        con.CloseSC();
     }
 
     public int AjouterProduitEnchere(Connexion con,int idenchere,int idproduit) throws SQLException {
@@ -49,7 +49,7 @@ public class ProduitDao {
         con = new Connexion(requete,"");
         con.getResultset().next();
         int result = con.getResultset().getInt(1);
-        con.CloseRC();
+//        con.CloseRC();
         return result;
     }
 

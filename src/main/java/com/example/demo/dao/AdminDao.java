@@ -32,7 +32,7 @@ public class AdminDao {
             return null;
         }
         finally {
-            c.CloseSC();
+//            c.CloseSC();
             return admin;
         }
     }
@@ -54,7 +54,7 @@ public class AdminDao {
         }
         finally
         {
-            con.CloseSC();
+//            con.CloseSC();
         }
     }
 
@@ -76,7 +76,7 @@ public class AdminDao {
             }
             return liste;
         } catch (Exception e) {
-            con.Close();
+//            con.Close();
             return null;
         }
     }
@@ -97,7 +97,7 @@ public class AdminDao {
 
             }
         }
-        finally { con.CloseSC(); }
+//        finally { con.CloseSC(); }
     }
 
 

@@ -35,7 +35,7 @@ public class HistoriqueEnchereDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 
     public List<Object[]> HistoriqueVente(Connexion con, int idutilisateur)
@@ -63,6 +63,6 @@ public class HistoriqueEnchereDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.Close(); }
+//        finally { con.Close(); }
     }
 }

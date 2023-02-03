@@ -26,7 +26,6 @@ public class Mere {/* the models that all classes will inherits */
                 e.printStackTrace();
                 throw e;
             } finally {
-                statement.close();
             }
         }
     }
@@ -42,14 +41,6 @@ public class Mere {/* the models that all classes will inherits */
                 e.printStackTrace();
                 throw e;
             } finally {
-                if (statement != null) {
-                    try {
-                        statement.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        throw e;
-                    }
-                }
             }
         }
     }
@@ -65,14 +56,7 @@ public class Mere {/* the models that all classes will inherits */
                 e.printStackTrace();
                 throw e;
             } finally {
-                if (statement != null) {
-                    try {
-                        statement.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        throw e;
-                    }
-                }
+
             }
         }
     }
@@ -94,12 +78,6 @@ public class Mere {/* the models that all classes will inherits */
                 e.printStackTrace();
                 throw e;
             }finally{
-                try{
-                    assert statement != null;
-                    statement.close();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
             }
         }
         return data;
@@ -118,12 +96,6 @@ public class Mere {/* the models that all classes will inherits */
                 e.printStackTrace();
                 throw e;
             }finally {
-                try{
-                    assert statement != null;
-                    statement.close();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
             }
         }
         return data;
@@ -147,12 +119,6 @@ public class Mere {/* the models that all classes will inherits */
                 e.printStackTrace();
                 throw e;
             }finally {
-                try{
-                    assert statement != null;
-                    statement.close();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
             }
         }
         return data;

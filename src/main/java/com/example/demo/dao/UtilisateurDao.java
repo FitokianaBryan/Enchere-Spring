@@ -38,7 +38,7 @@ public class UtilisateurDao {
         String requete="insert into utilisateur(nom,prenom,email,mdp) values ('"+nom+"','"+prenom+"','"+email+"','"+mdp+"')";
         con = new Connexion(requete);
         con.getResultset();
-        con.CloseRC();
+//        con.CloseRC();
     }
 
     public float getCompteUser(int idclient,Connexion con) throws Exception {
@@ -46,7 +46,7 @@ public class UtilisateurDao {
         con = new Connexion(requete,"");
         con.getResultset().next();
         float result = con.getResultset().getFloat(1);
-        con.CloseRC();
+//        con.CloseRC();
         return result;
     }
 
@@ -65,7 +65,7 @@ public class UtilisateurDao {
                 System.out.println("Transaction échouée : annulation");
             } catch (SQLException ex) {}
         }
-        finally { con.CloseSC(); }
+//        finally { con.CloseSC(); }
     }
 
 

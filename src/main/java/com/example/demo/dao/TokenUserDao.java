@@ -53,7 +53,7 @@ public class TokenUserDao {
         } catch (Exception e) {
             return null;
         }
-        finally { con.CloseSC(); }
+//        finally { con.CloseSC(); }
     }
 
     public void deleteTokenUser(String token,int idutilisateur){
@@ -66,7 +66,7 @@ public class TokenUserDao {
         } catch (Exception e) {
             throw e;
         }
-        finally { con.CloseSC(); }
+//        finally { con.CloseSC(); }
     }
 
     public int validTokenUser(String token) throws Exception
@@ -77,7 +77,7 @@ public class TokenUserDao {
         con.getResultset().next();
         int result = res.getInt(1);
         System.out.println("la requete est" + requete);
-        con.CloseRC();
+//        con.CloseRC();
         return result;
     }
 
@@ -102,7 +102,7 @@ public class TokenUserDao {
              {
                 return null;
              }
-             finally { con.Close(); }
+//             finally { con.Close(); }
 
     }
 

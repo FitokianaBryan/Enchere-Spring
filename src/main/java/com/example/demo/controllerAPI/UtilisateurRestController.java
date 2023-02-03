@@ -98,6 +98,20 @@ public class UtilisateurRestController {
         }
     }
 
+    @GetMapping("/getCompteUser")
+    public float getCompteUser(@RequestHeader("token") String token) throws Exception {
+        TokenUserDao tud = new TokenUserDao();
+        TokenUser tu;
+        if(tud.validTokenUser(token)!=0)
+        {
+            tu = tud.getTokenUser(token);
+            return ud.getCompteUser(tu.getIdUtilisateur(),con1);
+        }
+        else {
+            return 0.0f;
+        }
+    }
+
 
 }
 

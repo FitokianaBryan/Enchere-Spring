@@ -8,9 +8,9 @@ public class Connexion
     ResultSet res;
     protected static String DB = "railway";
     protected static String Username = "postgres";
-    protected static String Password = "xdUc1BXEMu9U6UjW8VmL";
-    protected static String PORT = "7805";
-    protected static String HOST = "containers-us-west-143.railway.app";
+    protected static String Password = "DQqp3epOn5BfOG5n4Onx";
+    protected static String PORT = "8022";
+    protected static String HOST = "containers-us-west-62.railway.app";
     protected static String url = "jdbc:postgresql://"+HOST+":"+PORT+"/"+DB;
 
 
@@ -57,9 +57,15 @@ public class Connexion
 
     public void Close() {
         try {
-            getResultset().close();
-            getStatement().close();
-            getConnection().close();
+            if(this.res != null) {
+                getResultset().close();
+            }
+            if(this.stat != null) {
+                getStatement().close();
+            }
+            if(this.con != null) {
+                getConnection().close();
+            }
         }
         catch(SQLException e) { e.printStackTrace(); }
         finally {}
@@ -67,8 +73,12 @@ public class Connexion
 
     public void CloseSC() {
         try {
-            getStatement().close();
-            getConnection().close();
+            if(this.stat != null) {
+                getStatement().close();
+            }
+            if(this.con != null) {
+                getConnection().close();
+            }
         }
         catch(SQLException e) { e.printStackTrace(); }
         finally {}
@@ -76,8 +86,12 @@ public class Connexion
 
     public void CloseRC() {
         try {
-            getResultset().close();
-            getConnection().close();
+            if(this.res != null) {
+                getResultset().close();
+            }
+            if(this.con != null) {
+                getConnection().close();
+            }
         }
         catch(SQLException e) { e.printStackTrace(); }
         finally {}

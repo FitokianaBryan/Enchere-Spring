@@ -187,7 +187,7 @@ public class ManipDb {/* this class is for all database manipulations */
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            res.close();
+            // res.close();
         }
         return vec.toArray();
     }

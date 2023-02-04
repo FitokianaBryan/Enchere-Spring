@@ -57,8 +57,8 @@ public class EnchereDao {
                     res.getTimestamp("dateheureenchere"),res.getInt("status"));
             liste.add(e);
         }
-        stm.close();
-        res.close();
+        // stm.close();
+        // res.close();
         return liste;
     }
 

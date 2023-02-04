@@ -28,7 +28,7 @@ public class UtilisateurDao {
             u = new Utilisateur(idUser,nom,prenom,email,m);
         } catch (Exception e) {}
         finally {
-            c.CloseSC();
+            // c.CloseSC();
             return u;
         }
     }

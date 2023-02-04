@@ -49,7 +49,7 @@ public class StatistiqueController {
         con.Resolve();
         List<Object[]> graphe = sd.chiffreAffaireAnneeMois(con);
         request.setAttribute("graphe",graphe);
-        con.getConnection().close();
+        // con.getConnection().close();
         return "Statistique";
     }
 }

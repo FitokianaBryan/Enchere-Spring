@@ -23,7 +23,7 @@ public class PrelevementEnchereDao {
         String requete="update PourcentagePrelevee set pourcentage="+pourcentage+"";
         con = new Connexion(requete);
         System.out.println(requete);
-        con.CloseSC();
+        // con.CloseSC();
     }
 
     public float ChiffreAffaire(Connexion con)
@@ -40,7 +40,7 @@ public class PrelevementEnchereDao {
             montant = 0.0f;
         }
         finally {
-            con.CloseRC();
+            // con.CloseRC();
             return montant;
         }
     }
